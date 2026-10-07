@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=oomap-bin
+_pkgname=oomap
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Applies transformation expressions to each object in a pipeline stream."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/oomap"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('oomap')
+conflicts=('oomap')
+source_x86_64=("${url}/releases/download/v${pkgver}/oomap-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/oomap-linux-x86_64" "${pkgdir}/usr/bin/oomap"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/oomap-uninstall"
+}
